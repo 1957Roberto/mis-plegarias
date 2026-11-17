@@ -1,0 +1,13 @@
+MIS PLEGARIAS — prototipo PWA v0.1
+
+Incluye interfaz en español, inglés, portugués, francés, italiano y alemán; escritura, edición, borrado, estado de petición atendida, agradecimiento y almacenamiento local en el navegador.
+
+Para probar en Windows: descomprimir y ejecutar en una terminal dentro de la carpeta: python -m http.server 8000. Abrir http://localhost:8000. El modo offline mediante service worker requiere HTTPS o localhost.
+
+Para probar en iPhone o iPad: publicar los archivos en un alojamiento HTTPS de archivos estáticos (por ejemplo, GitHub Pages), abrir el enlace con Safari, tocar Compartir y Agregar a pantalla de inicio. El enlace HTTPS todavía no está publicado.
+
+AVISO DE PRIVACIDAD: prototipo, no apto aún para información sensible. Usa localStorage sin cifrado adicional ni respaldo. Borrar datos del sitio puede borrar plegarias. No se implementa Face ID. No se envía contenido a un servidor desde el código de la aplicación, aunque el proveedor de alojamiento recibe solicitudes normales para entregar los archivos. El dictado depende del teclado/sistema operativo y puede involucrar procesamiento externo.
+
+Enlace del canal de WhatsApp incorporado: https://whatsapp.com/channel/0029VbCs8jo3wtb4uWKIyX2p
+
+Siguientes pasos: protección cifrada, respaldo local cifrado, íconos PNG iOS, revisión de accesibilidad y publicación de prueba.
