@@ -1,13 +1,9 @@
-MIS PLEGARIAS — prototipo PWA v0.1
+MIS PLEGARIAS v0.4 - PRUEBA
 
-Incluye interfaz en español, inglés, portugués, francés, italiano y alemán; escritura, edición, borrado, estado de petición atendida, agradecimiento y almacenamiento local en el navegador.
+Subir los cinco archivos a la raiz del repositorio, reemplazando los cuatro archivos existentes. No borrar la aplicacion del iPhone ni sus datos.
 
-Para probar en Windows: descomprimir y ejecutar en una terminal dentro de la carpeta: python -m http.server 8000. Abrir http://localhost:8000. El modo offline mediante service worker requiere HTTPS o localhost.
+La nueva funcion Compartir muestra una vista previa, una casilla de confirmacion y una invitacion opcional. Solo al confirmar se abre el menu de compartir del dispositivo. No hay servidor propio para plegarias.
 
-Para probar en iPhone o iPad: publicar los archivos en un alojamiento HTTPS de archivos estáticos (por ejemplo, GitHub Pages), abrir el enlace con Safari, tocar Compartir y Agregar a pantalla de inicio. El enlace HTTPS todavía no está publicado.
+PRIVACIDAD: la version de prueba usa localStorage sin cifrado y no tiene Face ID. No ingresar plegarias sensibles. La funcion de compartir entrega el texto a la app elegida, sujeto a sus condiciones.
 
-AVISO DE PRIVACIDAD: prototipo, no apto aún para información sensible. Usa localStorage sin cifrado adicional ni respaldo. Borrar datos del sitio puede borrar plegarias. No se implementa Face ID. No se envía contenido a un servidor desde el código de la aplicación, aunque el proveedor de alojamiento recibe solicitudes normales para entregar los archivos. El dictado depende del teclado/sistema operativo y puede involucrar procesamiento externo.
-
-Enlace del canal de WhatsApp incorporado: https://whatsapp.com/channel/0029VbCs8jo3wtb4uWKIyX2p
-
-Siguientes pasos: protección cifrada, respaldo local cifrado, íconos PNG iOS, revisión de accesibilidad y publicación de prueba.
+Nota: iOS puede mantener el icono instalado en cache; no desinstalar para forzar el cambio.
