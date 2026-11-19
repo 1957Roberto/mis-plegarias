@@ -39,6 +39,33 @@ function persist(){try{localStorage.setItem('mp-prayers',JSON.stringify(entries)
 function startEditor(id=null){editing=id;const entry=entries.find(x=>x.id===id);original=entry?.text||'';$('body').value=original;show('editor');$('body').focus()}
 function list(which){filter=which;renderList();show('listing')}
 function renderList(){const target=$('items');target.replaceChildren();$('listTitle').textContent=filter==='answered'?t('answered'):t('my');const filtered=entries.filter(x=>filter!=='answered'||x.answered).sort((a,b)=>b.created-a.created);if(!filtered.length){const p=document.createElement('p');p.className='muted';p.textContent=t('empty');target.append(p);return}for(const e of filtered){const b=document.createElement('button');b.className='card entry';const date=document.createElement('div');date.className='muted';date.textContent=new Date(e.created).toLocaleDateString(lang);const status=document.createElement('span');status.className='pill';status.textContent=e.answered?t('done'):t('pending');const p=document.createElement('p');p.textContent=e.text;b.append(date,status,p);b.onclick=()=>{selected=e.id;renderDetail();show('detail')};target.append(b)}}
+
+function verTodasLasPlegarias() {
+  const contenedor = document.getElementById('items');
+  contenedor.replaceChildren();
+
+  const ordenadas = [...entries].sort(
+    (a, b) => new Date(b.created) - new Date(a.created)
+  );
+
+  ordenadas.forEach(plegaria => {
+    const tarjeta = document.createElement('div');
+    tarjeta.className = 'card';
+
+    const titulo = document.createElement('h3');
+    titulo.textContent = plegaria.name || 'Plegaria';
+
+    const texto = document.createElement('p');
+    texto.textContent = plegaria.text || '';
+    texto.style.whiteSpace = 'pre-wrap';
+
+    tarjeta.append(titulo, texto);
+    contenedor.appendChild(tarjeta);
+  });
+
+  show('listing');
+}
+
 function renderDetail(){const e=entries.find(x=>x.id===selected);if(!e)return list('all');$('detailDate').textContent=new Date(e.created).toLocaleDateString(lang);$('detailStatus').textContent=e.answered?t('done'):t('pending');$('detailText').textContent=e.text;$('toggle').textContent=e.answered?t('unmark'):t('mark');$('detailThanks').classList.toggle('hidden',!e.thanks);$('thanksText').textContent=e.thanks||'';$('thanksForm').classList.toggle('hidden',!e.answered);$('thanksInput').value=e.thanks||''}
 function back(){if(page==='editor'&&$('body').value!==original&&!confirm(t('unsaved')))return;show('home')}
 $('new').onclick=()=>startEditor();$('all').onclick=()=>list('all');$('answered').onclick=()=>list('answered');$('settings').onclick=()=>show('preferences');document.querySelectorAll('[data-back]').forEach(x=>x.onclick=back);$('language').onchange=e=>{preference=e.target.value;localStorage.setItem('mp-language',preference);translate()};$('save').onclick=()=>{const text=$('body').value.trim();if(!text)return;if(editing){const e=entries.find(x=>x.id===editing);if(e)e.text=text}else{entries.push({id:crypto.randomUUID?crypto.randomUUID():String(Date.now()),text,created:Date.now(),answered:false,thanks:''})}if(persist()){editing=null;list('all')}};$('backList').onclick=()=>list(filter);$('edit').onclick=()=>startEditor(selected);$('toggle').onclick=()=>{const e=entries.find(x=>x.id===selected);if(e){e.answered=!e.answered;if(persist())renderDetail()}};$('saveThanks').onclick=()=>{const e=entries.find(x=>x.id===selected);if(e){e.thanks=$('thanksInput').value.trim();if(persist())renderDetail()}};$('delete').onclick=()=>{if(!confirm(t('confirm')))return;entries=entries.filter(x=>x.id!==selected);if(persist())list(filter)};translate();if('serviceWorker'in navigator&&location.protocol==='https:')navigator.serviceWorker.register('./sw.js').catch(()=>{});
