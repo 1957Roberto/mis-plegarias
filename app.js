@@ -43,6 +43,34 @@ try {
   console.error('Error al leer agradecimientos:', error);
 }
 
+function guardarAgradecimiento() {
+  const titulo = document.getElementById('gratitudeTitle').value.trim();
+  const fecha = document.getElementById('gratitudeDate').value;
+  const texto = document.getElementById('gratitudeText').value.trim();
+
+  if (!titulo || !fecha || !texto) {
+    alert('Completá el título, la fecha y el agradecimiento.');
+    return;
+  }
+
+  const registro = {
+    id: Date.now().toString(),
+    title: titulo,
+    date: fecha,
+    text: texto
+  };
+
+  const actualizadas = [...gratitudes, registro];
+
+  try {
+    localStorage.setItem('mp-gratitudes', JSON.stringify(actualizadas));
+    gratitudes = actualizadas;
+    alert('Agradecimiento guardado correctamente.');
+  } catch (error) {
+    alert('No se pudo guardar el agradecimiento.');
+  }
+}
+
 const $=id=>document.getElementById(id);let preference=localStorage.getItem('mp-language')||'auto';let lang='es';let entries=[];try{const raw=JSON.parse(localStorage.getItem('mp-prayers')||'[]');if(Array.isArray(raw))entries=raw.filter(x=>x&&typeof x.text==='string');}catch{}let page='home',editing=null,selected=null,filter='all',original='';
 function language(){const detected=(navigator.languages||[navigator.language||'es']).map(x=>x.split('-')[0]);return preference==='auto'?(detected.find(x=>dict[x])||'es'):preference}
 function t(k){return dict[lang][k]||dict.es[k]||k}
