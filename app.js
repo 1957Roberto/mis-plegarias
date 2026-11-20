@@ -118,6 +118,17 @@ ordenados.forEach(agradecimiento => {
 });
 }
 
+document.getElementById('viewGratitudes').addEventListener('click', () => {
+  mostrarAgradecimientos();
+  document.getElementById('gratitudeEditor').classList.add('hidden');
+  document.getElementById('gratitudeList').classList.remove('hidden');
+});
+
+document.getElementById('backGratitudes').addEventListener('click', () => {
+  document.getElementById('gratitudeList').classList.add('hidden');
+  document.getElementById('gratitudeEditor').classList.remove('hidden');
+});
+
 const $=id=>document.getElementById(id);let preference=localStorage.getItem('mp-language')||'auto';let lang='es';let entries=[];try{const raw=JSON.parse(localStorage.getItem('mp-prayers')||'[]');if(Array.isArray(raw))entries=raw.filter(x=>x&&typeof x.text==='string');}catch{}let page='home',editing=null,selected=null,filter='all',original='';
 function language(){const detected=(navigator.languages||[navigator.language||'es']).map(x=>x.split('-')[0]);return preference==='auto'?(detected.find(x=>dict[x])||'es'):preference}
 function t(k){return dict[lang][k]||dict.es[k]||k}
