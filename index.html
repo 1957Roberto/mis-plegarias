@@ -4,6 +4,20 @@
 <section id="home"><div class="content" style="padding:0"><button class="btn primary" id="new" data-i="new">＋ Nueva plegaria</button><button class="btn" id="all" data-i="my">Mis plegarias</button><button class="btn" id="answered" data-i="answered">Peticiones atendidas</button><button class="btn" id="settings" data-i="settings" >Configuración</button><button class="btn" id="gratitudes">Agradecimientos</button></div></section>
 <section id="editor" class="hidden"><div class="top"><h2 data-i="write">Escribir una plegaria</h2><button class="btn small" data-back data-i="back">Volver</button></div><p class="muted" data-i="dictate">También podés usar el micrófono del teclado de tu dispositivo para dictar.</p><textarea id="body" maxlength="20000" data-placeholder="placeholder" placeholder="Escribí aquí..."></textarea><div class="row" style="margin-top:12px"><button class="btn primary" id="save" data-i="save">Guardar</button><button class="btn" data-back data-i="cancel">Cancelar</button></div></section>
 
+<section id="gratitudeEditor" class="hidden">
+
+<div class="top"><h2>Agradecimientos a Dios</h2><button class="btn small" data-back>Volver</button></div>
+
+<label for="gratitudeTitle">Título</label><input id="gratitudeTitle" type="text" placeholder="Motivo de gratitud">
+
+<label for="gratitudeDate">Fecha</label><input id="gratitudeDate" type="date">
+
+<label for="gratitudeText">Motivo de gratitud</label><textarea id="gratitudeText" maxlength="20000" placeholder="Hoy quiero agradecer a Dios por..."></textarea>
+
+<button class="btn primary" id="saveGratitude">Guardar agradecimiento</button>
+
+</section>
+
   <section id="listing" class="hidden"><div class="top"><h2 id="listTitle"></h2><button class="btn small" data-back data-i="back">Volver</button></div> 
 <button class="btn" id="verTodas">Ver todas completas</button>
 <div id="items" class="list"></div></section>
