@@ -215,3 +215,5 @@ const originalRenderDetail=renderDetail;
 renderDetail=function(){originalRenderDetail();$('sharePreview').classList.add('hidden')};
 const originalTranslate=translate;
 translate=function(){originalTranslate();if(!$('sharePreview').classList.contains('hidden'))updateSharePreview()};
+
+document.getElementById('settings').before(document.getElementById('gratitudes'));
