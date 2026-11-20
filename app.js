@@ -66,6 +66,11 @@ function guardarAgradecimiento() {
     localStorage.setItem('mp-gratitudes', JSON.stringify(actualizadas));
     gratitudes = actualizadas;
     alert('Agradecimiento guardado correctamente.');
+    
+document.getElementById('gratitudeTitle').value = '';
+document.getElementById('gratitudeDate').value = '';
+document.getElementById('gratitudeText').value = '';
+
   } catch (error) {
     alert('No se pudo guardar el agradecimiento.');
   }
