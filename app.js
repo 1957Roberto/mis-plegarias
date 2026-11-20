@@ -71,6 +71,8 @@ function guardarAgradecimiento() {
   }
 }
 
+document.getElementById('saveGratitude').addEventListener('click', guardarAgradecimiento);
+
 const $=id=>document.getElementById(id);let preference=localStorage.getItem('mp-language')||'auto';let lang='es';let entries=[];try{const raw=JSON.parse(localStorage.getItem('mp-prayers')||'[]');if(Array.isArray(raw))entries=raw.filter(x=>x&&typeof x.text==='string');}catch{}let page='home',editing=null,selected=null,filter='all',original='';
 function language(){const detected=(navigator.languages||[navigator.language||'es']).map(x=>x.split('-')[0]);return preference==='auto'?(detected.find(x=>dict[x])||'es'):preference}
 function t(k){return dict[lang][k]||dict.es[k]||k}
