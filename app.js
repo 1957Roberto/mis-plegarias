@@ -90,6 +90,34 @@ document.querySelector('#gratitudeEditor [data-back]').addEventListener('click',
   document.getElementById('home').classList.remove('hidden');
 });
 
+function mostrarAgradecimientos() {
+  const contenedor = document.getElementById('gratitudeItems');
+  contenedor.replaceChildren();
+
+const ordenados = [...gratitudes].sort((a, b) =>
+  new Date(b.date) - new Date(a.date)
+);
+
+
+ordenados.forEach(agradecimiento => {
+  const tarjeta = document.createElement('div');
+  tarjeta.className = 'card';
+
+  const titulo = document.createElement('h3');
+  titulo.textContent = agradecimiento.title;
+
+  const fecha = document.createElement('p');
+  fecha.textContent = agradecimiento.date;
+
+  const texto = document.createElement('p');
+  texto.textContent = agradecimiento.text;
+  texto.style.whiteSpace = 'pre-wrap';
+
+  tarjeta.append(titulo, fecha, texto);
+  contenedor.appendChild(tarjeta);
+});
+}
+
 const $=id=>document.getElementById(id);let preference=localStorage.getItem('mp-language')||'auto';let lang='es';let entries=[];try{const raw=JSON.parse(localStorage.getItem('mp-prayers')||'[]');if(Array.isArray(raw))entries=raw.filter(x=>x&&typeof x.text==='string');}catch{}let page='home',editing=null,selected=null,filter='all',original='';
 function language(){const detected=(navigator.languages||[navigator.language||'es']).map(x=>x.split('-')[0]);return preference==='auto'?(detected.find(x=>dict[x])||'es'):preference}
 function t(k){return dict[lang][k]||dict.es[k]||k}
