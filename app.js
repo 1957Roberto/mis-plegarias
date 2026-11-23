@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 const dict={
-es:{share:"Compartir",sharePreview:"Vista previa del mensaje",shareConfirm:"Revisé el texto y deseo compartirlo",shareInvite:"Incluir invitación a conocer Mis plegarias",shareSend:"Compartir ahora",shareCopied:"Mensaje copiado. Pegalo donde quieras compartirlo.",shareFail:"No fue posible compartir el mensaje.",name:'Mis plegarias',tagline:'Un espacio personal para recordar mis peticiones a Dios.',new:'＋ Nueva plegaria',my:'Mis plegarias',answered:'Peticiones atendidas',settings:'Configuración'
+es:{share:"Compartir",sharePreview:"Vista previa del mensaje",shareConfirm:"Revisé el texto y deseo compartirlo",shareInvite:"Incluir invitación a conocer Mis plegarias",shareSend:"Compartir ahora",shareCopied:"Mensaje copiado. Pegalo donde quieras compartirlo.",shareFail:"No fue posible compartir el mensaje.",name:'Mis plegarias',tagline:'Un espacio personal para recordar mis peticiones a Dios.',new:'＋ Nueva plegaria',my:'Mis plegarias',answered:'Peticiones atendidas',settings:'Configuración',
 aboutTitle:'Acerca de Mis plegarias',
 write:'Escribir una plegaria',back:'Volver',dictate:'También podés usar el micrófono del teclado de tu dispositivo para dictar.',placeholder:'Escribí aquí tu plegaria...',save:'Guardar',cancel:'Cancelar',prayer:'Plegaria',
 gratitude:'Agradecimiento',fontSizeLabel:"Tamaño de letra",gratitudePrompt:
