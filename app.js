@@ -53,7 +53,90 @@ aboutTitle:'Über Meine Gebete',
 write:'Gebet schreiben',back:'Zurück',dictate:'Du kannst auch das Mikrofon der Tastatur zum Diktieren verwenden.',placeholder:'Schreibe hier dein Gebet...',save:'Speichern',cancel:'Abbrechen',prayer:'Gebet',gratitude:'Dankbarkeit',
 fontSizeLabel:"Schriftgröße",
 gratitudePrompt:'Möchtest du einen Dank hinzufügen? (Optional)',edit:'Bearbeiten',mark:'Als erhört markieren',unmark:'Als offen markieren',delete:'Gebet löschen',language:'Sprache',privacy:'Testversion: Gebete werden lokal im Browser ohne zusätzliche Verschlüsselung gespeichert. Vermeide sehr sensible Daten, bis Schutz und Sicherungen ergänzt wurden.',offline:'Die App kann nach dem ersten sicheren Laden offline funktionieren.',invite:'Freiwillige Einladung',channel:'Gedanken und Hoffnungsbotschaften: El pastor terrenal que continúa (WhatsApp).',channelOpen:'WhatsApp-Kanal besuchen',noads:'Keine Werbung · Keine Konten · Kein Teilen',pending:'Im Gebet',done:'Erhört',empty:'Hier sind noch keine Gebete.',confirm:'Dieses Gebet endgültig löschen?',unsaved:'Ungespeicherte Änderungen verwerfen?'}};
+const aboutTranslations = {
+  es: {
+    aboutSubtitle: "Un espacio personal de oración",
+    aboutIntro: "Mis plegarias fue creada para ayudarte a registrar tus peticiones a Dios, recordar sus respuestas y conservar los motivos de gratitud que surgen a lo largo de tu vida.",
+    aboutPurpose: "Su propósito es fortalecer la vida de oración, cultivar la memoria espiritual y reconocer la fidelidad de Dios en las experiencias cotidianas.",
+    aboutPrivacyTitle: "Privacidad y confidencialidad",
+    aboutPrivacy: "Tus plegarias y agradecimientos se almacenan exclusivamente en este dispositivo. La aplicación no requiere crear una cuenta ni envía el contenido de tus oraciones a servidores externos.",
+    aboutImportant: "Importante:",
+    aboutWarning: "Los registros podrían perderse si se eliminan los datos del navegador o se restablece el dispositivo. La protección de acceso mediante reconocimiento facial está pendiente de implementación.",
+    aboutAuthorTitle: "Autoría y derechos",
+    aboutAuthor: "Conocido como «El pastor terrenal que continúa»",
+    aboutRights: "Todos los derechos reservados.",
+    aboutLegal: "Queda prohibida la reproducción, modificación o distribución no autorizada de esta aplicación, salvo las excepciones previstas por la ley."
+  },
+  en: {
+    aboutSubtitle: "A personal space for prayer",
+    aboutIntro: "My Prayers was created to help you record your requests to God, remember His answers and preserve the reasons for gratitude throughout your life.",
+    aboutPurpose: "Its purpose is to strengthen your prayer life, cultivate spiritual memory and recognize God's faithfulness in everyday experiences.",
+    aboutPrivacyTitle: "Privacy and confidentiality",
+    aboutPrivacy: "Your prayers and expressions of gratitude are stored exclusively on this device. No account is required, and the app does not send your prayers to external servers.",
+    aboutImportant: "Important:",
+    aboutWarning: "Records may be lost if browser data is deleted or the device is reset. Facial recognition access protection has not yet been implemented.",
+    aboutAuthorTitle: "Authorship and rights",
+    aboutAuthor: "Known as «El pastor terrenal que continúa»",
+    aboutRights: "All rights reserved.",
+    aboutLegal: "Unauthorized reproduction, modification or distribution of this application is prohibited, except as permitted by law."
+  },
+  pt: {
+    aboutSubtitle: "Um espaço pessoal de oração",
+    aboutIntro: "Minhas Orações foi criado para ajudar você a registrar seus pedidos a Deus, recordar Suas respostas e conservar os motivos de gratidão ao longo da vida.",
+    aboutPurpose: "Seu propósito é fortalecer a vida de oração, cultivar a memória espiritual e reconhecer a fidelidade de Deus nas experiências cotidianas.",
+    aboutPrivacyTitle: "Privacidade e confidencialidade",
+    aboutPrivacy: "Suas orações e agradecimentos são armazenados exclusivamente neste dispositivo. O aplicativo não exige uma conta nem envia suas orações a servidores externos.",
+    aboutImportant: "Importante:",
+    aboutWarning: "Os registros podem ser perdidos se os dados do navegador forem apagados ou o dispositivo for redefinido. A proteção por reconhecimento facial ainda não foi implementada.",
+    aboutAuthorTitle: "Autoria e direitos",
+    aboutAuthor: "Conhecido como «El pastor terrenal que continúa»",
+    aboutRights: "Todos os direitos reservados.",
+    aboutLegal: "É proibida a reprodução, modificação ou distribuição não autorizada deste aplicativo, salvo as exceções previstas em lei."
+  },
+  fr: {
+    aboutSubtitle: "Un espace personnel de prière",
+    aboutIntro: "Mes Prières a été créé pour vous aider à noter vos demandes à Dieu, à vous souvenir de Ses réponses et à conserver vos motifs de gratitude tout au long de votre vie.",
+    aboutPurpose: "Son objectif est de fortifier la vie de prière, de cultiver la mémoire spirituelle et de reconnaître la fidélité de Dieu au quotidien.",
+    aboutPrivacyTitle: "Vie privée et confidentialité",
+    aboutPrivacy: "Vos prières et remerciements sont conservés exclusivement sur cet appareil. Aucun compte n’est nécessaire et vos prières ne sont pas envoyées à des serveurs externes.",
+    aboutImportant: "Important :",
+    aboutWarning: "Les données peuvent être perdues si celles du navigateur sont effacées ou si l’appareil est réinitialisé. La protection par reconnaissance faciale n’est pas encore disponible.",
+    aboutAuthorTitle: "Auteur et droits",
+    aboutAuthor: "Connu sous le nom de «El pastor terrenal que continúa»",
+    aboutRights: "Tous droits réservés.",
+    aboutLegal: "Toute reproduction, modification ou distribution non autorisée de cette application est interdite, sauf exceptions prévues par la loi."
+  },
+  it: {
+    aboutSubtitle: "Uno spazio personale di preghiera",
+    aboutIntro: "Le mie preghiere è stata creata per aiutarti a registrare le tue richieste a Dio, ricordare le Sue risposte e conservare i motivi di gratitudine nel corso della vita.",
+    aboutPurpose: "Il suo scopo è rafforzare la vita di preghiera, coltivare la memoria spirituale e riconoscere la fedeltà di Dio nella vita quotidiana.",
+    aboutPrivacyTitle: "Privacy e riservatezza",
+    aboutPrivacy: "Le tue preghiere e i tuoi ringraziamenti sono conservati esclusivamente su questo dispositivo. Non è necessario un account e le preghiere non vengono inviate a server esterni.",
+    aboutImportant: "Importante:",
+    aboutWarning: "I dati potrebbero andare persi se vengono cancellati i dati del browser o ripristinato il dispositivo. La protezione tramite riconoscimento facciale non è ancora disponibile.",
+    aboutAuthorTitle: "Autore e diritti",
+    aboutAuthor: "Conosciuto come «El pastor terrenal que continúa»",
+    aboutRights: "Tutti i diritti riservati.",
+    aboutLegal: "È vietata la riproduzione, modifica o distribuzione non autorizzata di questa applicazione, salvo le eccezioni previste dalla legge."
+  },
+  de: {
+    aboutSubtitle: "Ein persönlicher Raum für Gebet",
+    aboutIntro: "Meine Gebete wurde entwickelt, um dir zu helfen, deine Bitten an Gott festzuhalten, dich an Seine Antworten zu erinnern und Gründe zur Dankbarkeit zu bewahren.",
+    aboutPurpose: "Die App soll das Gebetsleben stärken, das geistliche Gedächtnis fördern und Gottes Treue im Alltag bewusst machen.",
+    aboutPrivacyTitle: "Datenschutz und Vertraulichkeit",
+    aboutPrivacy: "Deine Gebete und Danksagungen werden ausschließlich auf diesem Gerät gespeichert. Ein Benutzerkonto ist nicht erforderlich. Die Gebete werden nicht an externe Server übertragen.",
+    aboutImportant: "Wichtig:",
+    aboutWarning: "Beim Löschen der Browserdaten oder Zurücksetzen des Geräts können die Einträge verloren gehen. Der Zugangsschutz durch Gesichtserkennung ist noch nicht verfügbar.",
+    aboutAuthorTitle: "Urheberschaft und Rechte",
+    aboutAuthor: "Bekannt als «El pastor terrenal que continúa»",
+    aboutRights: "Alle Rechte vorbehalten.",
+    aboutLegal: "Die unbefugte Vervielfältigung, Änderung oder Verbreitung dieser Anwendung ist untersagt, außer in gesetzlich vorgesehenen Fällen."
+  }
+};
 
+Object.keys(aboutTranslations).forEach(code => {
+  Object.assign(dict[code], aboutTranslations[code]);
+});
 let gratitudes = [];
 
 try {
