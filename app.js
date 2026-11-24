@@ -324,7 +324,11 @@ ordenados.forEach(agradecimiento => {
   titulo.textContent = agradecimiento.title;
 
   const fecha = document.createElement('p');
-  fecha.textContent = agradecimiento.date;
+ fecha.textContent = new Date(agradecimiento.date + 'T00:00:00').toLocaleDateString(lang, {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric'
+});
 
   const texto = document.createElement('p');
   texto.textContent = agradecimiento.text;
