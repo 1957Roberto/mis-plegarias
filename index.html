@@ -30,24 +30,43 @@
 
 <section id="gratitudeEditor" class="hidden">
 
-<div class="top"><h2>Agradecimientos a Dios</h2><button class="btn small" data-back>Volver</button></div>
+  <div class="top">
+    <h2 data-i="gratitudesTitle">Agradecimientos espontáneos</h2>
+    <button class="btn small" data-back data-i="back">Volver</button>
+  </div>
 
-<label for="gratitudeTitle">Título</label><input id="gratitudeTitle" type="text" placeholder="Motivo de gratitud">
+  <div style="margin-bottom:15px;">
+    <label for="gratitudeTitle" data-i="gratitudeTitleLabel">Título</label>
+    <input id="gratitudeTitle" type="text"
+      data-placeholder="gratitudeTitlePlaceholder"
+      placeholder="Motivo de gratitud"
+      style="display:block;width:100%;box-sizing:border-box;padding:12px;font:inherit;border:1px solid #cbbda9;border-radius:12px;margin-top:5px;">
+  </div>
 
-<label for="gratitudeDate">Fecha</label><input id="gratitudeDate" type="date">
+  <div style="margin-bottom:15px;">
+    <label for="gratitudeDate" data-i="gratitudeDateLabel">Fecha</label>
+    <input id="gratitudeDate" type="date"
+      style="display:block;width:100%;box-sizing:border-box;padding:12px;font:inherit;border:1px solid #cbbda9;border-radius:12px;margin-top:5px;">
+  </div>
 
-<label for="gratitudeText">Motivo de gratitud</label><textarea id="gratitudeText" maxlength="20000" placeholder="Hoy quiero agradecer a Dios por..."></textarea>
+  <div style="margin-bottom:15px;">
+    <label for="gratitudeText" data-i="gratitudeTextLabel">Mi agradecimiento a Dios</label>
+    <textarea id="gratitudeText" maxlength="20000"
+      data-placeholder="gratitudeTextPlaceholder"
+      placeholder="Hoy quiero agradecer a Dios por..."
+      style="margin-top:5px;"></textarea>
+  </div>
 
-<button class="btn primary" id="saveGratitude">Guardar agradecimiento</button>
+  <button class="btn primary" id="saveGratitude" data-i="gratitudeSave">Guardar agradecimiento</button>
 
-<button class="btn" id="viewGratitudes">Ver mis agradecimientos</button>
+  <button class="btn" id="viewGratitudes" data-i="gratitudeView">Ver mis agradecimientos</button>
 
 </section>
 
 <section id="gratitudeList" class="hidden">
   <div class="top">
-    <h2>Mis agradecimientos</h2>
-    <button class="btn small" id="backGratitudes">Volver</button>
+    <h2 data-i="gratitudeListTitle">Mis agradecimientos</h2>
+    <button class="btn small" id="backGratitudes" data-i="back">Volver</button>
   </div>
   <div id="gratitudeItems" class="list"></div>
 </section>
