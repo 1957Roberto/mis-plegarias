@@ -162,8 +162,13 @@ const $=id=>document.getElementById(id);let preference=localStorage.getItem('mp-
 function language(){const detected=(navigator.languages||[navigator.language||'es']).map(x=>x.split('-')[0]);return preference==='auto'?(detected.find(x=>dict[x])||'es'):preference}
 function t(k){return dict[lang][k]||dict.es[k]||k}
 const taglineLines={
-"es":["Mis peticiones y","agradecimientos a Dios."],
-"en":["A personal space","to remember my prayers to God."],"pt":["Um espaço pessoal","para recordar meus pedidos a Deus."],"fr":["Un espace personnel","pour me souvenir de mes prières à Dieu."],"it":["Uno spazio personale","per ricordare le mie preghiere a Dio."],"de":["Ein persönlicher Ort","um mich an meine Gebete zu Gott zu erinnern."]};
+  es:["Mis peticiones y","agradecimientos a Dios."],
+  en:["My requests and","thanks to God."],
+  pt:["Meus pedidos e","agradecimentos a Deus."],
+  fr:["Mes demandes et","mes remerciements à Dieu."],
+  it:["Le mie richieste e","i miei ringraziamenti a Dio."],
+  de:["Meine Bitten und","mein Dank an Gott."]
+};
 function translate(){lang=language();document.documentElement.lang=lang;const lines=taglineLines[lang]||taglineLines.es;$('taglineFirst').textContent=lines[0];$('taglineSecond').textContent=lines[1];document.querySelectorAll('[data-i]').forEach(el=>el.textContent=t(el.dataset.i));document.querySelectorAll('[data-placeholder]').forEach(el=>el.placeholder=t(el.dataset.placeholder));$('language').value=preference;document.title=t('name');if(page==='listing')renderList();if(page==='detail')renderDetail()}
 function show(next){page=next;document.querySelectorAll('main section').forEach(s=>s.classList.toggle('hidden',s.id!==next));window.scrollTo(0,0)}
 function persist(){try{localStorage.setItem('mp-prayers',JSON.stringify(entries));return true}catch{alert('No se pudo guardar. Revisá el espacio disponible.');return false}}
