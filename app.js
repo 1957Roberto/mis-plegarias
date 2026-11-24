@@ -173,7 +173,72 @@ const homeTranslations = {
 Object.keys(homeTranslations).forEach(code => {
   Object.assign(dict[code], homeTranslations[code]);
 });let gratitudes = [];
+const gratitudeTranslations = {
+  es: {
+    gratitudeTitleLabel: "Título",
+    gratitudeTitlePlaceholder: "Motivo de gratitud",
+    gratitudeDateLabel: "Fecha",
+    gratitudeTextLabel: "Mi agradecimiento a Dios",
+    gratitudeTextPlaceholder: "Hoy quiero agradecer a Dios por...",
+    gratitudeSave: "Guardar agradecimiento",
+    gratitudeView: "Ver mis agradecimientos",
+    gratitudeListTitle: "Mis agradecimientos"
+  },
+  en: {
+    gratitudeTitleLabel: "Title",
+    gratitudeTitlePlaceholder: "Reason for gratitude",
+    gratitudeDateLabel: "Date",
+    gratitudeTextLabel: "My gratitude to God",
+    gratitudeTextPlaceholder: "Today I want to thank God for...",
+    gratitudeSave: "Save thanksgiving",
+    gratitudeView: "View my thanksgivings",
+    gratitudeListTitle: "My thanksgivings"
+  },
+  pt: {
+    gratitudeTitleLabel: "Título",
+    gratitudeTitlePlaceholder: "Motivo de gratidão",
+    gratitudeDateLabel: "Data",
+    gratitudeTextLabel: "Minha gratidão a Deus",
+    gratitudeTextPlaceholder: "Hoje quero agradecer a Deus por...",
+    gratitudeSave: "Salvar agradecimento",
+    gratitudeView: "Ver meus agradecimentos",
+    gratitudeListTitle: "Meus agradecimentos"
+  },
+  fr: {
+    gratitudeTitleLabel: "Titre",
+    gratitudeTitlePlaceholder: "Motif de gratitude",
+    gratitudeDateLabel: "Date",
+    gratitudeTextLabel: "Ma gratitude envers Dieu",
+    gratitudeTextPlaceholder: "Aujourd’hui, je remercie Dieu pour...",
+    gratitudeSave: "Enregistrer le remerciement",
+    gratitudeView: "Voir mes remerciements",
+    gratitudeListTitle: "Mes remerciements"
+  },
+  it: {
+    gratitudeTitleLabel: "Titolo",
+    gratitudeTitlePlaceholder: "Motivo di gratitudine",
+    gratitudeDateLabel: "Data",
+    gratitudeTextLabel: "La mia gratitudine a Dio",
+    gratitudeTextPlaceholder: "Oggi voglio ringraziare Dio per...",
+    gratitudeSave: "Salva ringraziamento",
+    gratitudeView: "Vedi i miei ringraziamenti",
+    gratitudeListTitle: "I miei ringraziamenti"
+  },
+  de: {
+    gratitudeTitleLabel: "Titel",
+    gratitudeTitlePlaceholder: "Grund zur Dankbarkeit",
+    gratitudeDateLabel: "Datum",
+    gratitudeTextLabel: "Mein Dank an Gott",
+    gratitudeTextPlaceholder: "Heute möchte ich Gott danken für...",
+    gratitudeSave: "Danksagung speichern",
+    gratitudeView: "Meine Danksagungen ansehen",
+    gratitudeListTitle: "Meine Danksagungen"
+  }
+};
 
+Object.keys(gratitudeTranslations).forEach(code => {
+  Object.assign(dict[code], gratitudeTranslations[code]);
+});
 try {
   const guardadas = JSON.parse(
     localStorage.getItem('mp-gratitudes') || '[]'
