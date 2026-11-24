@@ -137,7 +137,42 @@ const aboutTranslations = {
 Object.keys(aboutTranslations).forEach(code => {
   Object.assign(dict[code], aboutTranslations[code]);
 });
-let gratitudes = [];
+const homeTranslations = {
+  es: {
+    answeredDesc: "Recuerda las respuestas de Dios a tus plegarias.",
+    gratitudesTitle: "Agradecimientos espontáneos",
+    gratitudesDesc: "Agradece a Dios por las bendiciones recibidas, aun sin haberlas pedido."
+  },
+  en: {
+    answeredDesc: "Remember God's answers to your prayers.",
+    gratitudesTitle: "Spontaneous thanksgiving",
+    gratitudesDesc: "Thank God for the blessings received, even without asking for them."
+  },
+  pt: {
+    answeredDesc: "Lembre-se das respostas de Deus às suas orações.",
+    gratitudesTitle: "Agradecimentos espontâneos",
+    gratitudesDesc: "Agradeça a Deus pelas bênçãos recebidas, mesmo sem tê-las pedido."
+  },
+  fr: {
+    answeredDesc: "Souvenez-vous des réponses de Dieu à vos prières.",
+    gratitudesTitle: "Remerciements spontanés",
+    gratitudesDesc: "Remerciez Dieu pour les bénédictions reçues, même sans les avoir demandées."
+  },
+  it: {
+    answeredDesc: "Ricorda le risposte di Dio alle tue preghiere.",
+    gratitudesTitle: "Ringraziamenti spontanei",
+    gratitudesDesc: "Ringrazia Dio per le benedizioni ricevute, anche senza averle chieste."
+  },
+  de: {
+    answeredDesc: "Erinnere dich an Gottes Antworten auf deine Gebete.",
+    gratitudesTitle: "Spontane Danksagungen",
+    gratitudesDesc: "Danke Gott für die empfangenen Segnungen, auch wenn du nicht darum gebeten hast."
+  }
+};
+
+Object.keys(homeTranslations).forEach(code => {
+  Object.assign(dict[code], homeTranslations[code]);
+});let gratitudes = [];
 
 try {
   const guardadas = JSON.parse(
