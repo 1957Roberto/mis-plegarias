@@ -434,3 +434,79 @@ const originalTranslate=translate;
 translate=function(){originalTranslate();if(!$('sharePreview').classList.contains('hidden'))updateSharePreview()};
 
 document.getElementById('settings').before(document.getElementById('gratitudes'));
+function actualizarCalendario() {
+  const dia = $('gratitudeDay');
+  const mes = $('gratitudeMonth');
+  const anio = $('gratitudeYear');
+  const fecha = $('gratitudeDate');
+
+  if (!dia || !mes || !anio || !fecha) return;
+
+  const hoy = new Date();
+  const d = Number(dia.value) || hoy.getDate();
+  const m = Number(mes.value) || hoy.getMonth() + 1;
+  const a = Number(anio.value) || hoy.getFullYear();
+
+  const etiquetas = {
+    es: ['Día', 'Mes', 'Año'],
+    en: ['Day', 'Month', 'Year'],
+    pt: ['Dia', 'Mês', 'Ano'],
+    fr: ['Jour', 'Mois', 'Année'],
+    it: ['Giorno', 'Mese', 'Anno'],
+    de: ['Tag', 'Monat', 'Jahr']
+  };
+
+  const nombres = etiquetas[lang] || etiquetas.es;
+  dia.setAttribute('aria-label', nombres[0]);
+  mes.setAttribute('aria-label', nombres[1]);
+  anio.setAttribute('aria-label', nombres[2]);
+
+  mes.replaceChildren();
+  anio.replaceChildren();
+  dia.replaceChildren();
+
+  for (let i = 1; i <= 12; i++) {
+    const nombre = new Intl.DateTimeFormat(lang, {
+      month: 'long'
+    }).format(new Date(2026, i - 1, 1));
+
+    mes.add(new Option(nombre, i));
+  }
+
+for (let i = 2050; i >= 2020; i--) {
+    anio.add(new Option(i, i));
+  }
+
+  mes.value = m;
+  anio.value = a;
+
+  const maximo = new Date(a, m, 0).getDate();
+
+  for (let i = 1; i <= maximo; i++) {
+    dia.add(new Option(i, i));
+  }
+
+  dia.value = Math.min(d, maximo);
+
+  fecha.value =
+    anio.value + '-' +
+    mes.value.padStart(2, '0') + '-' +
+    dia.value.padStart(2, '0');
+
+  dia.onchange = actualizarCalendario;
+  mes.onchange = actualizarCalendario;
+  anio.onchange = actualizarCalendario;
+}
+
+const translateAntesCalendario = translate;
+
+translate = function() {
+  translateAntesCalendario();
+  actualizarCalendario();
+};
+
+$('gratitudes').addEventListener(
+  'click', actualizarCalendario
+);
+
+actualizarCalendario();
