@@ -240,6 +240,54 @@ Object.keys(gratitudeTranslations).forEach(code => {
   Object.assign(dict[code], gratitudeTranslations[code]);
 });
 dict.es.viewAllFull = "Ver todas completas";
+const messageTranslations = {
+  es: {
+    gratitudeRequired: "Completá el título, la fecha y el agradecimiento.",
+    gratitudeSaved: "Agradecimiento guardado correctamente.",
+    gratitudeError: "No se pudo guardar el agradecimiento.",
+    gratitudeExit: "¿Salir sin guardar el agradecimiento?",
+    storageError: "No se pudo guardar. Revisá el espacio disponible."
+  },
+  en: {
+    gratitudeRequired: "Please complete the title, date and thanksgiving.",
+    gratitudeSaved: "Thanksgiving saved successfully.",
+    gratitudeError: "Unable to save the thanksgiving.",
+    gratitudeExit: "Exit without saving your thanksgiving?",
+    storageError: "Unable to save. Check the available storage space."
+  },
+  pt: {
+    gratitudeRequired: "Preencha o título, a data e o agradecimento.",
+    gratitudeSaved: "Agradecimento salvo com sucesso.",
+    gratitudeError: "Não foi possível salvar o agradecimento.",
+    gratitudeExit: "Sair sem salvar o agradecimento?",
+    storageError: "Não foi possível salvar. Verifique o espaço disponível."
+  },
+  fr: {
+    gratitudeRequired: "Veuillez renseigner le titre, la date et le remerciement.",
+    gratitudeSaved: "Remerciement enregistré avec succès.",
+    gratitudeError: "Impossible d’enregistrer le remerciement.",
+    gratitudeExit: "Quitter sans enregistrer le remerciement ?",
+    storageError: "Impossible d’enregistrer. Vérifiez l’espace disponible."
+  },
+  it: {
+    gratitudeRequired: "Completa il titolo, la data e il ringraziamento.",
+    gratitudeSaved: "Ringraziamento salvato correttamente.",
+    gratitudeError: "Impossibile salvare il ringraziamento.",
+    gratitudeExit: "Uscire senza salvare il ringraziamento?",
+    storageError: "Impossibile salvare. Controlla lo spazio disponibile."
+  },
+  de: {
+    gratitudeRequired: "Bitte Titel, Datum und Danksagung eingeben.",
+    gratitudeSaved: "Danksagung erfolgreich gespeichert.",
+    gratitudeError: "Die Danksagung konnte nicht gespeichert werden.",
+    gratitudeExit: "Ohne Speichern der Danksagung verlassen?",
+    storageError: "Speichern nicht möglich. Prüfe den verfügbaren Speicherplatz."
+  }
+};
+
+Object.keys(messageTranslations).forEach(code => {
+  Object.assign(dict[code], messageTranslations[code]);
+});
 dict.en.viewAllFull = "View all full prayers";
 dict.pt.viewAllFull = "Ver todas na íntegra";
 dict.fr.viewAllFull = "Voir toutes les prières en entier";
@@ -261,7 +309,7 @@ function guardarAgradecimiento() {
   const texto = document.getElementById('gratitudeText').value.trim();
 
   if (!titulo || !fecha || !texto) {
-    alert('Completá el título, la fecha y el agradecimiento.');
+    alert(t('gratitudeRequired'));
     return;
   }
 
@@ -277,14 +325,14 @@ function guardarAgradecimiento() {
   try {
     localStorage.setItem('mp-gratitudes', JSON.stringify(actualizadas));
     gratitudes = actualizadas;
-    alert('Agradecimiento guardado correctamente.');
+   alert(t('gratitudeSaved'));
     
 document.getElementById('gratitudeTitle').value = '';
 document.getElementById('gratitudeDate').value = '';
 document.getElementById('gratitudeText').value = '';
 
   } catch (error) {
-    alert('No se pudo guardar el agradecimiento.');
+ alert(t('gratitudeError'));
   }
 }
 
@@ -299,7 +347,7 @@ document.querySelector('#gratitudeEditor [data-back]').addEventListener('click',
   const titulo = document.getElementById('gratitudeTitle').value.trim();
   const texto = document.getElementById('gratitudeText').value.trim();
 
-  if ((titulo || texto) && !confirm('¿Salir sin guardar el agradecimiento?')) {
+ if ((titulo || texto) && !confirm(t('gratitudeExit'))) {
     return;
   }
 
@@ -363,7 +411,15 @@ const taglineLines={
 };
 function translate(){lang=language();document.documentElement.lang=lang;const lines=taglineLines[lang]||taglineLines.es;$('taglineFirst').textContent=lines[0];$('taglineSecond').textContent=lines[1];document.querySelectorAll('[data-i]').forEach(el=>el.textContent=t(el.dataset.i));document.querySelectorAll('[data-placeholder]').forEach(el=>el.placeholder=t(el.dataset.placeholder));$('language').value=preference;document.title=t('name');if(page==='listing')renderList();if(page==='detail')renderDetail()}
 function show(next){page=next;document.querySelectorAll('main section').forEach(s=>s.classList.toggle('hidden',s.id!==next));window.scrollTo(0,0)}
-function persist(){try{localStorage.setItem('mp-prayers',JSON.stringify(entries));return true}catch{alert('No se pudo guardar. Revisá el espacio disponible.');return false}}
+function persist() {
+  try {
+    localStorage.setItem('mp-prayers', JSON.stringify(entries));
+    return true;
+  } catch {
+    alert(t('storageError'));
+    return false;
+  }
+}
 function startEditor(id=null){editing=id;const entry=entries.find(x=>x.id===id);original=entry?.text||'';$('body').value=original;show('editor');$('body').focus()}
 function list(which){filter=which;renderList();show('listing')}
 function renderList(){const target=$('items');target.replaceChildren();$('listTitle').textContent=filter==='answered'?t('answered'):t('my');const filtered=entries.filter(x=>filter!=='answered'||x.answered).sort((a,b)=>b.created-a.created);if(!filtered.length){const p=document.createElement('p');p.className='muted';p.textContent=t('empty');target.append(p);return}for(const e of filtered){const b=document.createElement('button');b.className='card entry';const date=document.createElement('div');date.className='muted';date.textContent=new Date(e.created).toLocaleDateString(lang);const status=document.createElement('span');status.className='pill';status.textContent=e.answered?t('done'):t('pending');const p=document.createElement('p');p.textContent=e.text;b.append(date,status,p);b.onclick=()=>{selected=e.id;renderDetail();show('detail')};target.append(b)}}
