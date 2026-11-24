@@ -239,7 +239,12 @@ const gratitudeTranslations = {
 Object.keys(gratitudeTranslations).forEach(code => {
   Object.assign(dict[code], gratitudeTranslations[code]);
 });
-try {
+dict.es.viewAllFull = "Ver todas completas";
+dict.en.viewAllFull = "View all full prayers";
+dict.pt.viewAllFull = "Ver todas na íntegra";
+dict.fr.viewAllFull = "Voir toutes les prières en entier";
+dict.it.viewAllFull = "Leggi tutte le preghiere per intero";
+dict.de.viewAllFull = "Alle Gebete vollständig anzeigen";try {
   const guardadas = JSON.parse(
     localStorage.getItem('mp-gratitudes') || '[]'
   );
