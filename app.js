@@ -368,7 +368,7 @@ function verTodasLasPlegarias() {
   const contenedor = document.getElementById('items');
   contenedor.replaceChildren();
 
-  const ordenadas = [...entries].sort(
+  const ordenadas = entries.filter(x => filter !== 'answered' || x.answered).sort(
     (a, b) => new Date(b.created) - new Date(a.created)
   );
 
@@ -377,7 +377,7 @@ function verTodasLasPlegarias() {
     tarjeta.className = 'card';
 
     const titulo = document.createElement('h3');
-    titulo.textContent = plegaria.name || 'Plegaria';
+    titulo.textContent = plegaria.name || t('prayer');
 
     const texto = document.createElement('p');
     texto.textContent = plegaria.text || '';
