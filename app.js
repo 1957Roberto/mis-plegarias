@@ -303,7 +303,7 @@ dict.de.viewAllFull = "Alle Gebete vollständig anzeigen";try {
   console.error('Error al leer agradecimientos:', error);
 }
 
-function guardarAgradecimiento() {
+
   const titulo = document.getElementById('gratitudeTitle').value.trim();
   const fecha = document.getElementById('gratitudeDate').value;
   const texto = document.getElementById('gratitudeText').value.trim();
@@ -313,12 +313,13 @@ function guardarAgradecimiento() {
     return;
   }
 
-  const registro = {
-    id: Date.now().toString(),
-    title: titulo,
-    date: fecha,
-    text: texto
-  };
+ const registro = {
+  id: crypto.randomUUID(),
+  created: Date.now(),
+  title: titulo,
+  date: fecha,
+  text: texto
+};
 
   const actualizadas = [...gratitudes, registro];
 
@@ -328,7 +329,7 @@ function guardarAgradecimiento() {
    alert(t('gratitudeSaved'));
     
 document.getElementById('gratitudeTitle').value = '';
-document.getElementById('gratitudeDate').value = '';
+
 document.getElementById('gratitudeText').value = '';
 
   } catch (error) {
@@ -360,7 +361,9 @@ function mostrarAgradecimientos() {
   contenedor.replaceChildren();
 
 const ordenados = [...gratitudes].sort((a, b) =>
-  new Date(b.date) - new Date(a.date)
+  b.date.localeCompare(a.date) ||
+  (b.created || Number(b.id) || 0) -
+  (a.created || Number(a.id) || 0)
 );
 
 
@@ -377,7 +380,14 @@ ordenados.forEach(agradecimiento => {
   month: 'long',
   year: 'numeric'
 });
+const momento = agradecimiento.created || Number(agradecimiento.id);
 
+if (Number.isFinite(momento) && momento > 0) {
+  fecha.textContent += ' · ' + new Date(momento).toLocaleTimeString(lang, {
+    hour: '2-digit',
+    minute: '2-digit'
+  });
+}
   const texto = document.createElement('p');
   texto.textContent = agradecimiento.text;
   texto.style.whiteSpace = 'pre-wrap';
