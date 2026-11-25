@@ -303,7 +303,7 @@ dict.de.viewAllFull = "Alle Gebete vollständig anzeigen";try {
   console.error('Error al leer agradecimientos:', error);
 }
 
-
+function guardarAgradecimiento() {
   const titulo = document.getElementById('gratitudeTitle').value.trim();
   const fecha = document.getElementById('gratitudeDate').value;
   const texto = document.getElementById('gratitudeText').value.trim();
