@@ -302,7 +302,7 @@ dict.de.viewAllFull = "Alle Gebete vollständig anzeigen";try {
 } catch (error) {
   console.error('Error al leer agradecimientos:', error);
 }
-
+let gratitudeEditingId = null;
 function guardarAgradecimiento() {
   const titulo = document.getElementById('gratitudeTitle').value.trim();
   const fecha = document.getElementById('gratitudeDate').value;
@@ -313,19 +313,26 @@ function guardarAgradecimiento() {
     return;
   }
 
- const registro = {
-  id: crypto.randomUUID(),
-  created: Date.now(),
+const anterior = gratitudes.find(g => g.id === gratitudeEditingId);
+
+const registro = {
+  id: anterior ? anterior.id : crypto.randomUUID(),
+  created: anterior
+    ? (anterior.created || Number(anterior.id) || Date.now())
+    : Date.now(),
   title: titulo,
   date: fecha,
   text: texto
 };
 
-  const actualizadas = [...gratitudes, registro];
+const actualizadas = anterior
+  ? gratitudes.map(g => g.id === gratitudeEditingId ? registro : g)
+  : [...gratitudes, registro];
 
   try {
     localStorage.setItem('mp-gratitudes', JSON.stringify(actualizadas));
-    gratitudes = actualizadas;
+   gratitudes = actualizadas;
+gratitudeEditingId = null;
    alert(t('gratitudeSaved'));
     
 document.getElementById('gratitudeTitle').value = '';
@@ -344,14 +351,17 @@ document.getElementById('gratitudes').addEventListener('click', () => {
   document.getElementById('home').classList.add('hidden');
 });
 
-document.querySelector('#gratitudeEditor [data-back]').addEventListener('click', () => {
+document.querySelector('#gratitudeEditor [data-back]').addEventListener('click', (event) => {
+  event.stopImmediatePropagation();
   const titulo = document.getElementById('gratitudeTitle').value.trim();
   const texto = document.getElementById('gratitudeText').value.trim();
 
  if ((titulo || texto) && !confirm(t('gratitudeExit'))) {
     return;
   }
-
+gratitudeEditingId = null;
+document.getElementById('gratitudeTitle').value = '';
+document.getElementById('gratitudeText').value = '';
   document.getElementById('gratitudeEditor').classList.add('hidden');
   document.getElementById('home').classList.remove('hidden');
 });
@@ -392,11 +402,97 @@ if (Number.isFinite(momento) && momento > 0) {
   texto.textContent = agradecimiento.text;
   texto.style.whiteSpace = 'pre-wrap';
 
-  tarjeta.append(titulo, fecha, texto);
+  const acciones = document.createElement('div');
+acciones.className = 'row';
+acciones.style.marginTop = '12px';
+
+const botonEditar = document.createElement('button');
+botonEditar.className = 'btn small';
+botonEditar.textContent = t('edit');
+botonEditar.onclick = () => editarAgradecimiento(agradecimiento.id);
+
+const botonEliminar = document.createElement('button');
+botonEliminar.className = 'btn small danger';
+botonEliminar.textContent = t('gratitudeDelete');
+botonEliminar.onclick = () => eliminarAgradecimiento(agradecimiento.id);
+
+acciones.append(botonEditar, botonEliminar);
+
+tarjeta.append(titulo, fecha, texto, acciones);
   contenedor.appendChild(tarjeta);
 });
 }
+function editarAgradecimiento(id) {
+  const registro = gratitudes.find(g => g.id === id);
+  if (!registro) return;
 
+  gratitudeEditingId = id;
+
+  $('gratitudeTitle').value = registro.title;
+  $('gratitudeText').value = registro.text;
+
+  const partes = registro.date.split('-');
+  $('gratitudeYear').value = Number(partes[0]);
+  $('gratitudeMonth').value = Number(partes[1]);
+
+  actualizarCalendario();
+
+  $('gratitudeDay').value = Number(partes[2]);
+
+  actualizarCalendario();
+
+  show('gratitudeEditor');
+}
+function eliminarAgradecimiento(id) {
+  if (!confirm(t('gratitudeDeleteConfirm'))) return;
+
+  const actualizadas = gratitudes.filter(g => g.id !== id);
+
+  try {
+    localStorage.setItem('mp-gratitudes', JSON.stringify(actualizadas));
+    gratitudes = actualizadas;
+
+    if (gratitudeEditingId === id) {
+      gratitudeEditingId = null;
+      $('gratitudeTitle').value = '';
+      $('gratitudeText').value = '';
+    }
+
+    mostrarAgradecimientos();
+  } catch (error) {
+    alert(t('gratitudeError'));
+  }
+}
+const gratitudeActionTranslations = {
+  es: {
+    gratitudeDelete: "Eliminar",
+    gratitudeDeleteConfirm: "¿Eliminar definitivamente este agradecimiento?"
+  },
+  en: {
+    gratitudeDelete: "Delete",
+    gratitudeDeleteConfirm: "Permanently delete this thanksgiving?"
+  },
+  pt: {
+    gratitudeDelete: "Excluir",
+    gratitudeDeleteConfirm: "Excluir definitivamente este agradecimento?"
+  },
+  fr: {
+    gratitudeDelete: "Supprimer",
+    gratitudeDeleteConfirm: "Supprimer définitivement ce remerciement ?"
+  },
+  it: {
+    gratitudeDelete: "Elimina",
+    gratitudeDeleteConfirm: "Eliminare definitivamente questo ringraziamento?"
+  },
+  de: {
+    gratitudeDelete: "Löschen",
+    gratitudeDeleteConfirm: "Diese Danksagung endgültig löschen?"
+  }
+};
+
+Object.keys(gratitudeActionTranslations).forEach(code => {
+  Object.assign(dict[code], gratitudeActionTranslations[code]);
+});
 document.getElementById('viewGratitudes').addEventListener('click', () => {
   mostrarAgradecimientos();
   document.getElementById('gratitudeEditor').classList.add('hidden');
