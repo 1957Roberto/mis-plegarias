@@ -676,3 +676,77 @@ $('gratitudes').addEventListener(
 );
 
 actualizarCalendario();
+const editModeTranslations = {
+  es: ["Editar agradecimiento", "Guardar cambios", "Cancelar edición"],
+  en: ["Edit thanksgiving", "Save changes", "Cancel editing"],
+  pt: ["Editar agradecimento", "Salvar alterações", "Cancelar edição"],
+  fr: ["Modifier le remerciement", "Enregistrer les modifications", "Annuler la modification"],
+  it: ["Modifica ringraziamento", "Salva modifiche", "Annulla modifica"],
+  de: ["Danksagung bearbeiten", "Änderungen speichern", "Bearbeitung abbrechen"]
+};
+
+function actualizarModoAgradecimiento() {
+  const editando = gratitudeEditingId !== null;
+  const textos = editModeTranslations[lang] || editModeTranslations.es;
+  const encabezado = document.querySelector('#gratitudeEditor h2');
+
+  encabezado.textContent = editando
+    ? textos[0] : t('gratitudesTitle');
+
+  $('saveGratitude').textContent = editando
+    ? textos[1] : t('gratitudeSave');
+
+  const cancelar = $('cancelGratitudeEdit');
+
+  if (cancelar) {
+    cancelar.textContent = textos[2];
+    cancelar.classList.toggle('hidden', !editando);
+  }
+
+  $('viewGratitudes').classList.toggle('hidden', editando);
+}
+
+const editarOriginal = editarAgradecimiento;
+
+editarAgradecimiento = function(id) {
+  editarOriginal(id);
+  actualizarModoAgradecimiento();
+};
+
+$('cancelGratitudeEdit')?.addEventListener('click', () => {
+  const registro = gratitudes.find(g => g.id === gratitudeEditingId);
+
+  const cambios = registro && (
+    $('gratitudeTitle').value !== registro.title ||
+    $('gratitudeText').value !== registro.text ||
+    $('gratitudeDate').value !== registro.date
+  );
+
+  if (cambios && !confirm(t('gratitudeExit'))) return;
+
+  gratitudeEditingId = null;
+  $('gratitudeTitle').value = '';
+  $('gratitudeText').value = '';
+
+  actualizarModoAgradecimiento();
+  mostrarAgradecimientos();
+  show('gratitudeList');
+});
+
+$('saveGratitude').addEventListener('click', actualizarModoAgradecimiento);
+
+$('gratitudes').addEventListener('click', actualizarModoAgradecimiento);
+
+document.querySelector('#gratitudeEditor [data-back]')
+  .addEventListener('click', () => {
+    setTimeout(actualizarModoAgradecimiento, 0);
+  }, true);
+
+const translateAntesModoEdicion = translate;
+
+translate = function() {
+  translateAntesModoEdicion();
+  actualizarModoAgradecimiento();
+};
+
+actualizarModoAgradecimiento();
